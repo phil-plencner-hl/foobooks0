@@ -26,29 +26,30 @@ require 'logic.php';
 
 <form method='POST' action='search.php'>
     <label>Search for a book by title
-        <input type='text' name='searchTerm' value='<?php if(isset($searchTerm)) echo $searchTerm; ?>'>
+        <input type='text' name='searchTerm' value='<?php if (isset($searchTerm)) echo $searchTerm; ?>'>
     </label>
 
     <label>
-        <input type='checkbox' name='caseSensitive' <?php if(isset($caseSensitive) and $caseSensitive) echo 'checked' ?>>
+        <input type='checkbox'
+               name='caseSensitive' <?php if (isset($caseSensitive) and $caseSensitive) echo 'checked' ?>>
         Case Sensitive
     </label>
     <input type='submit' value='Search'>
 </form>
 
-<?php if(isset($searchTerm)): ?>
+<?php if (isset($searchTerm)): ?>
     <div class='alert alert-primary' role='alert'>
-        You searched for <?=$searchTerm ?>
+        You searched for <?= $searchTerm ?>
     </div>
 <?php endif; ?>
 
-<?php if(isset($bookCount) && $bookCount == 0): ?>
+<?php if (isset($bookCount) && $bookCount == 0): ?>
     <div class='alert alert-warning' role='alert'>
         No results found.
     </div>
 <?php endif; ?>
 
-<?php if(isset($books)): ?>
+<?php if (isset($books)): ?>
     <ul class='books'>
         <?php foreach ($books as $title => $book): ?>
             <li class='book'>

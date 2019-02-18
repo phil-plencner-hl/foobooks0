@@ -13,13 +13,13 @@ $books = json_decode($booksJson, true);
 
 # Filter book data according to search term
 foreach ($books as $title => $book) {
-    if($caseSensitive) {
+    if ($caseSensitive) {
         $match = $title == $searchTerm;
-    } else{
+    } else {
         $match = strtolower($title) == strtolower($searchTerm);
     }
 
-    if(!$match) {
+    if (!$match) {
         unset($books[$title]);
     }
 }
