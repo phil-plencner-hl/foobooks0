@@ -24,9 +24,14 @@ require 'logic.php';
 
 <p>Foobooks0 is a small library of books. Search below for your favorite.</p>
 
-<form method='GET' action='search.php'>
+<form method='POST' action='search.php'>
     <label>Search for a book by title
         <input type='text' name='searchTerm' value='<?php if(isset($searchTerm)) echo $searchTerm; ?>'>
+    </label>
+
+    <label>
+        <input type='checkbox' name='caseSensitive' <?php if(isset($caseSensitive) and $caseSensitive) echo 'checked' ?>>
+        Case Sensitive
     </label>
     <input type='submit' value='Search'>
 </form>
