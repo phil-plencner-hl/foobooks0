@@ -1,4 +1,11 @@
 <?php
-$booksJson = file_get_contents('books.json');
+session_start();
 
-$books = json_decode($booksJson, true);
+if (isset($_SESSION['results'])) {
+    $results = $_SESSION['results'];
+    $books = $results['books'];
+    $searchTerm = $results['searchTerm'];
+    $bookCount = $results['bookCount'];
+}
+
+session_unset();
