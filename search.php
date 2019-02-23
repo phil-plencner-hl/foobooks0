@@ -1,28 +1,18 @@
 <?php
+require 'includes/helpers.php';
+require 'Book.php';
+
+use Foobooks0\Book;
+
 session_start();
 
-require 'includes/helpers.php';
+$book = new Book('books.json');
 
 # Get data from form request
 $searchTerm = $_POST['searchTerm'];
 $caseSensitive = isset($_POST['caseSensitive']);
 
-# Load book data
-$booksJson = file_get_contents('books.json');
-$books = json_decode($booksJson, true);
-
-# Filter book data according to search term
-foreach ($books as $title => $book) {
-    if ($caseSensitive) {
-        $match = $title == $searchTerm;
-    } else {
-        $match = strtolower($title) == strtolower($searchTerm);
-    }
-
-    if (!$match) {
-        unset($books[$title]);
-    }
-}
+$books = $book->getByTitle($caseSensitive, $searchTerm);
 
 # Store our data in the session
 $_SESSION['results'] = [
