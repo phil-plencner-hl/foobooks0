@@ -26,7 +26,7 @@ require 'logic.php';
 
 <form method='POST' action='search.php'>
     <label>Search for a book by title
-        <input type='text' name='searchTerm' value='<?php if (isset($searchTerm)) echo $searchTerm; ?>'>
+        <input type='text' name='searchTerm' value='<?= $searchTerm ?? ''; ?>'>
     </label>
 
     <label>
@@ -39,7 +39,7 @@ require 'logic.php';
     <?php if ($hasErrors): ?>
         <div class='alert alert-danger'>
             <ul>
-                <?php foreach($errors as $error): ?>
+                <?php foreach ($errors as $error): ?>
                     <li><?= $error ?></li>
                 <?php endforeach; ?>
             </ul>
@@ -47,7 +47,7 @@ require 'logic.php';
     <?php endif; ?>
 </form>
 
-<?php if(!$hasErrors): ?>
+<?php if (!$hasErrors): ?>
     <?php if (isset($searchTerm)): ?>
         <div class='alert alert-primary' role='alert'>
             You searched for <?= $searchTerm ?>
