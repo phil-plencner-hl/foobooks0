@@ -35,18 +35,30 @@ require 'logic.php';
         Case Sensitive
     </label>
     <input type='submit' value='Search'>
+
+    <?php if ($hasErrors): ?>
+        <div class='alert alert-danger'>
+            <ul>
+                <?php foreach($errors as $error): ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 </form>
 
-<?php if (isset($searchTerm)): ?>
-    <div class='alert alert-primary' role='alert'>
-        You searched for <?= $searchTerm ?>
-    </div>
-<?php endif; ?>
+<?php if(!$hasErrors): ?>
+    <?php if (isset($searchTerm)): ?>
+        <div class='alert alert-primary' role='alert'>
+            You searched for <?= $searchTerm ?>
+        </div>
+    <?php endif; ?>
 
-<?php if (isset($bookCount) && $bookCount == 0): ?>
-    <div class='alert alert-warning' role='alert'>
-        No results found.
-    </div>
+    <?php if (isset($bookCount) && $bookCount == 0): ?>
+        <div class='alert alert-warning' role='alert'>
+            No results found.
+        </div>
+    <?php endif; ?>
 <?php endif; ?>
 
 <?php if (isset($books)): ?>
